@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   resources :characters
   resources :users
+
+  get "user/info", to: "users#user_info"
 end

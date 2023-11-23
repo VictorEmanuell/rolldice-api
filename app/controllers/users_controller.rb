@@ -1,5 +1,5 @@
 class UsersController < BaseController
-    before_action :authenticate_user, only: [:destroy]
+    before_action :authenticate_user, except: [:create]
 
     def create
         @user = User.new(user_params)
@@ -11,6 +11,16 @@ class UsersController < BaseController
             errors: @user.errors
           }, status: :unprocessable_entity
         end
+    end
+
+    def user_info
+      @user = User.find_by(id: session[:user_id])
+
+      if @user.present?
+          render json: @user,status: :ok
+      else
+          render status: :bad_request
+      end
     end
 
     def destroy
