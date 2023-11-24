@@ -2,6 +2,7 @@ class Character < ApplicationRecord
     belongs_to :user
 
     has_many :character_skills
+    has_many :attacks
     has_one :defense
 
     scope :user_id, -> (user_id) {where(user_id: user_id)}

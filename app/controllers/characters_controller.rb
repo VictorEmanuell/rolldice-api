@@ -2,6 +2,17 @@ class CharactersController < BaseController
     before_action :authenticate_user, except: [:create]
     before_action :set_character, only: [:update, :show, :destroy]
 
+    def create
+        @character = Character.new(character_params.merge(user_id: session[:user_id]))
+        if @character.save
+          render json: @character
+        else
+            render json: {
+                errors: @character.errors
+            }, status: :unprocessable_entity
+        end
+    end
+
     def index
         characters = Character.user_id(session[:user_id])
 
@@ -13,17 +24,6 @@ class CharactersController < BaseController
             render json: @character, status: :ok
         else
             render status: :bad_request
-        end
-    end
-
-    def create
-        @character = Character.new(character_params.merge(user_id: session[:user_id]))
-        if @character.save
-          render json: @character
-        else
-            render json: {
-                errors: @character.errors
-            }, status: :unprocessable_entity
         end
     end
 
