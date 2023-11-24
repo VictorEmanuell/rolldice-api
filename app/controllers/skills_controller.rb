@@ -1,7 +1,7 @@
 class SkillsController < BaseController
     def index
-        @skills = Skill.all
+        skills = Skill.all
 
-        render json: @skills, status: :ok
+        render json: skills, status: :ok
     end
 end

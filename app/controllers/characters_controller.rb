@@ -3,9 +3,9 @@ class CharactersController < BaseController
     before_action :set_character, only: [:update, :show, :destroy]
 
     def index
-        @characters = Character.user_id(session[:user_id])
+        characters = Character.user_id(session[:user_id])
 
-        render json: @characters
+        render json: characters
     end
     
     def show
@@ -52,6 +52,17 @@ class CharactersController < BaseController
     end
 
     def character_params
-        params.require(:character).permit(:name, :character_class, :level, :strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma)
+        params.require(:character)
+                .permit(
+                    :name,
+                    :character_class,
+                    :level,
+                    :strength,
+                    :dexterity,
+                    :constitution,
+                    :intelligence,
+                    :wisdom,
+                    :charisma
+                )             
     end
 end

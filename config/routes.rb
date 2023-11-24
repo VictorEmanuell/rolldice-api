@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :characters
   resources :skills
   resources :character_skills
+  resources :defenses
+  resources :attacks
 
   get "user/info", to: "users#user_info"
 

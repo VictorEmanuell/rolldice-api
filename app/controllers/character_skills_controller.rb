@@ -1,27 +1,36 @@
-class CharacterSkillsController < ApplicationController
-    def update_skill
-        @character_skill = CharacterSkill.find_by(character_id: params[:character_id], skill_id: params[:skill_id])
+class CharacterSkillsController < BaseController
+    before_action :authenticate_user
 
-        if @character_skill.present?
-            @character_skill.update(character_skill_params)
-        else
-            @character_skill = CharacterSkill.create(character_skill_params)
-        end
+    def update_skill
+        character_skill = CharacterSkill
+                            .update_character_skill(
+                                current_user,
+                                params[:character_id],
+                                params[:skill_id],
+                                character_skill_params
+                            )
         
-        if @character_skill.errors.present?
-            render json: @character_skill.errors, status: :bad_request
+        if character_skill.errors.present?
+            render json: character_skill.errors, status: :bad_request
         else
-            render json: @character_skill, status: :ok
+            render json: character_skill, status: :ok
         end
     end
 
     def show
-        render json: CharacterSkill.get_skills(params[:id])
+        render json: CharacterSkill.get_skills(params[:id], session[:user_id])
     end
 
     private
 
     def character_skill_params
-        params.require(:character_skill).permit(:character_id, :skill_id,:trained, :character_attribute, :others)
+        params.require(:character_skill)
+                .permit(
+                    :character_id,
+                    :skill_id,
+                    :trained,
+                    :character_attribute,
+                    :others
+                )
     end
 end

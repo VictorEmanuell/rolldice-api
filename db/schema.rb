@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_24_000636) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_183307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,8 +66,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_24_000636) do
     t.text "slot2_name", null: false
     t.integer "slot2_defense", null: false
     t.integer "slot2_penalty", null: false
-    t.enum "attribute", null: false, enum_type: ""Attributes""
-    t.boolean "use_atribute", null: false
+    t.enum "defense_attribute", null: false, enum_type: ""Attributes""
+    t.boolean "use_attribute", null: false
     t.integer "others", null: false
     t.index ["character_id"], name: "defenses_character_id_key", unique: true
   end
