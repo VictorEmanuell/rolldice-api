@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :characters
   resources :users
+  resources :characters
+  resources :skills
+  resources :character_skills
 
   get "user/info", to: "users#user_info"
+
+  patch "character_skill/update", to: "character_skills#update_skill"
 end

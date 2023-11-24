@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_23_003715) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_000636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,11 +36,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_003715) do
     t.enum "range", null: false, enum_type: ""Ranges""
   end
 
-  create_table "character_skills", id: false, force: :cascade do |t|
+  create_table "character_skills", force: :cascade do |t|
     t.integer "character_id", null: false
     t.integer "skill_id", null: false
     t.boolean "trained", null: false
-    t.enum "attribute", null: false, enum_type: ""Attributes""
+    t.enum "character_attribute", null: false, enum_type: ""Attributes""
     t.integer "others", null: false
     t.index ["skill_id"], name: "character_skills_skill_id_key", unique: true
   end

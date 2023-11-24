@@ -6,4 +6,6 @@ class Character < ApplicationRecord
     def self.user_id_from_character(user_id, id)
         find_by(user_id: user_id, id: id)
     end
+
+    has_many :character_skills
 end
