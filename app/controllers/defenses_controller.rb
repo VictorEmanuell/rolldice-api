@@ -1,6 +1,16 @@
 class DefensesController < BaseController
     before_action :authenticate_user
-    before_action :validate_user, only: [:update, :destroy]
+    before_action :validate_user, only: [:show, :update, :destroy]
+
+    def show
+        defense = Defense.find_by(character_id: params[:id])
+
+        if defense.present?
+            render json: defense, status: :ok
+        else
+            render json: false, status: :ok
+        end
+    end
 
     def update
         defense = Defense.find_or_initialize_by(character_id: params[:id])
@@ -18,7 +28,7 @@ class DefensesController < BaseController
         if defense.destroy
             render status: :ok
         else
-            render json: defense.errors, status: :bad_request
+            render status: :ok
         end
     end
 

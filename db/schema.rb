@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_24_183307) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_230856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,15 +60,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_24_183307) do
 
   create_table "defenses", id: false, force: :cascade do |t|
     t.integer "character_id", null: false
-    t.text "slot1_name", null: false
-    t.integer "slot1_defense", null: false
-    t.integer "slot1_penalty", null: false
-    t.text "slot2_name", null: false
-    t.integer "slot2_defense", null: false
-    t.integer "slot2_penalty", null: false
-    t.enum "defense_attribute", null: false, enum_type: ""Attributes""
-    t.boolean "use_attribute", null: false
-    t.integer "others", null: false
+    t.text "slot1_name", default: ""
+    t.integer "slot1_defense", default: 0
+    t.integer "slot1_penalty", default: 0
+    t.text "slot2_name", default: ""
+    t.integer "slot2_defense", default: 0
+    t.integer "slot2_penalty", default: 0
+    t.enum "defense_attribute", default: "DES", null: false, enum_type: ""Attributes""
+    t.boolean "use_attribute", default: false
+    t.integer "others", default: 0
     t.index ["character_id"], name: "defenses_character_id_key", unique: true
   end
 

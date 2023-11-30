@@ -1,9 +1,9 @@
 class Character < ApplicationRecord
     belongs_to :user
 
-    has_many :character_skills
-    has_many :attacks
-    has_one :defense
+    has_many :character_skills, dependent: :destroy
+    has_many :attacks, dependent: :destroy
+    has_one :defense, dependent: :destroy
 
     scope :user_id, -> (user_id) {where(user_id: user_id)}
 
