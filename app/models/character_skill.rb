@@ -13,7 +13,7 @@ class CharacterSkill < ApplicationRecord
             character = skill.character_skill.try(:character)
             
             skill_array << {
-                skill: skill,
+                **skill.as_json.symbolize_keys,
                 modifier: character.try(:user_id) == user_id &&
                             character.try(:id) == character_id.to_i ?
                             skill.character_skill : nil

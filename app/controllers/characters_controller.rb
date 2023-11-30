@@ -21,7 +21,13 @@ class CharactersController < BaseController
     
     def show
         if @character.present?
-            render json: @character, status: :ok
+            render json: {
+                **@character.as_json.symbolize_keys,
+                attacks: @character.attacks,
+                skills: CharacterSkill.get_skills(@character.id, session[:user_id]),
+                armor: @character.defense
+            },
+            status: :ok
         else
             render status: :bad_request
         end
