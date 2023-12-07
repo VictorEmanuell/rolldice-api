@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_30_203608) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_07_192717) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,12 +28,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_30_203608) do
     t.text "damage", null: false
     t.integer "extra_damage", null: false
     t.enum "damage_type", null: false, enum_type: ""DamageTypes""
-    t.enum "damage_attribute", null: false, enum_type: ""Attributes""
-    t.integer "extra_dices", null: false
+    t.string "damage_attribute", null: false
+    t.string "extra_dices", default: "0", null: false
     t.text "critical_type", null: false
     t.integer "critical_value", null: false
     t.integer "critical_multiplier", null: false
     t.enum "range", null: false, enum_type: ""Ranges""
+    t.integer "use_skill", default: 0
   end
 
   create_table "character_skills", force: :cascade do |t|

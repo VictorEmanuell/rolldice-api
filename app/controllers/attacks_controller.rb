@@ -1,5 +1,5 @@
 class AttacksController < BaseController
-    before_action :authenticate_user, only: [:index, :update, :show, :destroy]
+    before_action :authenticate_user, only: [:create, :index, :update, :show, :destroy]
     before_action :set_attack, only: [:update, :show, :destroy]
 
     def create
@@ -70,7 +70,8 @@ class AttacksController < BaseController
                     :critical_type,
                     :critical_value,
                     :critical_multiplier,
-                    :range
+                    :range,
+                    :use_skill
                 )
     end
 end
