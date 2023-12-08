@@ -1,3 +1,3 @@
 class Skill < ApplicationRecord
-    has_one :character_skill
+    has_many :character_skill
 end
