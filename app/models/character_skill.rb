@@ -5,7 +5,7 @@ class CharacterSkill < ApplicationRecord
     belongs_to :skill
 
     def self.get_skills (character_id, user_id)
-        skills = Skill.all
+        skills = Skill.all.order(name: :asc)
 
         skill_array = []
 
